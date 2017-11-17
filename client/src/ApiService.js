@@ -28,36 +28,56 @@ class ApiService {
             }),
             body: {query}
         });
-        const data = await res.json();
-        return data;
+        if (res.ok) {
+            const body = await res.json();
+            return body.data;
+        } else {
+            throw new Error(res.status);
+        }
     }
 
-    async getUsers(params={}) {
+    /**
+     * 
+     * @param {object} params
+     * @returns {array} users list or empty list
+     */
+    async getUsers(params = {}) {
         const data = await this.getGraphQlData(
             `ùsers ${this.paramsToString(params)} {${this.userFields}}`
         );
-        return data;
+        //return users list
+        return data.users;
     }
-    
-    async getTodos(params={}) {
+
+    /**
+     * 
+     * @param {object} params
+     * @returns {array} users list or empty list
+     */
+    async getTodos(params = {}) {
         const data = await this.getGraphQlData(
             `todos ${this.paramsToString(params)} {${this.todoFields}}`
         );
-        return data;
+        //return todos list
+        return data.todos;
     }
 
+    /**
+     * 
+     * @param {object} params
+     * @returns {String} params converted to string for usage in graphQL
+     */
     paramsToString(params) {
         let paramString = '';
-        if(params.constructor === Object && Object.keys(params).length) {
+        if (params.constructor === Object && Object.keys(params).length) {
             let tmp = [];
-            for(let key in params) {
+            for (let key in params) {
                 tmp.push(`${key}:${params[key].toString()}`);
             }
             paramString = `(${tmp.join()})`;
         }
         return paramString;
     }
-
 
 }
 
