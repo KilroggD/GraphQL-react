@@ -1,7 +1,7 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import React from 'react';
 
+const UserName = (props) => {
+    return <div className="user__name">{props.name} {props.surname}</div>;
+}
 
+export default UserName;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ApiService from '../ApiService';
 import UserList from '../components/UserList';
-import UserForm from '../form/UserForm';
+import UserForm from '../forms/UserForm';
 
 class UserListContainer extends React.Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class UserListContainer extends React.Component {
     async search(params) {
         try {
             const users = await ApiService.getUsers(params);
-            this.setSate({users});
+            this.setState({users});
         } catch (e) {
             console.error(`An error ${e.message} occured while searching users`);
         }
@@ -30,3 +30,6 @@ class UserListContainer extends React.Component {
 
 
 }
+
+export default UserListContainer;
+

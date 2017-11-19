@@ -1,7 +1,17 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import React from 'react';
+import TodoItem from './TodoItem';
 
+const TodoList = (props) => {
+    if(!props.todos.length) {
+        return null;
+    }
+    return <div class="todo__list">
+        {
+            props.todos.map((item, index) => {
+                return <TodoItem key={index} {...item} />;
+            })
+        }
+    </div>
+}
 
+export default TodoList

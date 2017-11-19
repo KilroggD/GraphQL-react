@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import UserListContainer from './containers/UserListContainer';
-import TodoContainer from './containers/TodoListContainer';
+import TodoListContainer from './containers/TodoListContainer';
+import { Route, Switch } from 'react-router-dom';
 
 const App = () => {
-    <Switch>
+    return <Switch>
         <Route exact path='/' component={UserListContainer}/>
         <Route path='/todos/:userId' component={TodoListContainer}/>
     </Switch>

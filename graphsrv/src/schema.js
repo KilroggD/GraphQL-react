@@ -10,7 +10,7 @@ GraphQLInt,
         GraphQLObjectType,
         GraphQLNonNull,
         GraphQLSchema,
-        } from 'graphql';
+} from 'graphql';
 
 const UserType = new GraphQLObjectType({
     name: 'User',
@@ -46,31 +46,37 @@ const TodoQueryRootType = new GraphQLObjectType({
     name: 'TodoAppSchema',
     description: 'Root Todo App Schema',
     fields: () => ({
-       users: {
-           type: new GraphQLList(UserType),
-           description: 'List of Users',
-           resolve: (parent, args) => {
-               if(Object.keys(args).length) {
-                   return filter(Users, args);
-               }
-               return Users;
-           }
-       },
-       todos: {
-           args: {
-               userId: {type: GraphQLInt},
-               completed: {type: GraphQLBoolean},
-           },
-           type: new GraphQLList(TodoType),
-           description: 'List of Todos',
-           resolve: (parent, args) => {
-               if(Object.keys(args).length) {
-                   return filter(Todos, args);
-               }
-               return Todos;
-           }
-       }
-    })
+            users: {
+                args: {
+                    first_name: {type: GraphQLString},
+                    last_name: {type: GraphQLString},
+                    department: {type: GraphQLString},
+                    country: {type: GraphQLString},
+                },
+                type: new GraphQLList(UserType),
+                description: 'List of Users',
+                resolve: (parent, args) => {
+                    if (Object.keys(args).length) {
+                        return filter(Users, args);
+                    }
+                    return Users;
+                }
+            },
+            todos: {
+                args: {
+                    userId: {type: GraphQLInt},
+                    completed: {type: GraphQLBoolean},
+                },
+                type: new GraphQLList(TodoType),
+                description: 'List of Todos',
+                resolve: (parent, args) => {
+                    if (Object.keys(args).length) {
+                        return filter(Todos, args);
+                    }
+                    return Todos;
+                }
+            }
+        })
 });
 
 const schema = new GraphQLSchema({

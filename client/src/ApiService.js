@@ -9,7 +9,7 @@ class ApiService {
      * @returns {ApiService}
      */
     constructor() {
-        this.apiUrl = 'http://localhost:3000/graphql';
+        this.apiUrl = 'http://localhost:3001/graphql';
         this.userFields = `{id, first_name, last_name, email, department, country}`;
         this.todoFields = `{id title completed user {first_name, last_name}}`;
     }
@@ -20,13 +20,15 @@ class ApiService {
      * @returns {unresolved}
      */
     async getGraphQlData(query) {
+        console.log(query);
         const res = await fetch(this.apiUrl, {
             method: 'POST',
             mode: 'cors',
             headers: new Headers({
                 'Content-Type': 'application/json',
+                'Accept': 'application/json',
             }),
-            body: {query}
+            body: JSON.stringify({query}),
         });
         if (res.ok) {
             const body = await res.json();
@@ -43,7 +45,7 @@ class ApiService {
      */
     async getUsers(params = {}) {
         const data = await this.getGraphQlData(
-            `ùsers ${this.paramsToString(params)} {${this.userFields}}`
+            `{users ${this.paramsToString(params)} ${this.userFields}}`
         );
         //return users list
         return data.users;
@@ -56,7 +58,7 @@ class ApiService {
      */
     async getTodos(params = {}) {
         const data = await this.getGraphQlData(
-            `todos ${this.paramsToString(params)} {${this.todoFields}}`
+            `{todos ${this.paramsToString(params)} ${this.todoFields}}`
         );
         //return todos list
         return data.todos;
@@ -72,7 +74,11 @@ class ApiService {
         if (params.constructor === Object && Object.keys(params).length) {
             let tmp = [];
             for (let key in params) {
-                tmp.push(`${key}:${params[key].toString()}`);
+                let paramStr = params[key].toString();
+                if (typeof params[key] === 'string') {
+                    paramStr = `"${paramStr}"`;
+                }
+                tmp.push(`${key}:${paramStr}`);
             }
             paramString = `(${tmp.join()})`;
         }

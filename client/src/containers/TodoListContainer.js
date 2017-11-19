@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from '../components/TodoList';
 import ApiService from '../ApiService';
+import { Link } from 'react-router-dom';
 
 class TodoListContainer extends React.Component {
 
@@ -23,7 +24,7 @@ class TodoListContainer extends React.Component {
 
     render () {
         return (
-           <div className="todo-list">
+           <div className="todo">
                <TodoList todos={this.state.todos} />
                <Link to='/'>Back to Users list</Link>
            </div>
@@ -31,4 +32,7 @@ class TodoListContainer extends React.Component {
     }
 
 }
+
+export default TodoListContainer;
+
 
