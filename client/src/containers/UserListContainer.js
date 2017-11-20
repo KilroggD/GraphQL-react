@@ -22,7 +22,7 @@ class UserListContainer extends React.Component {
     }
 
     render() {
-        return <div className="user-list">
+        return <div className="user">
             <UserForm submitHandler={this.search} />
             <UserList users={this.state.users} />
         </div>;

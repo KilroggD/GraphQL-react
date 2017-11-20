@@ -1,10 +1,88 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 18.11.2017, 20:34:20
-    Author     : Kilrogg
-*/
+* {
+    box-sizing: border-box;
+}
 
+.user, .user__form, .user__list, .user__item, .user__info,
+.todo, .todo__list, .todo__item, .todo__assignee {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user {
+    flex-direction: column;
+}
+
+.user__form {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.user__form label {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.user__form input, .user__form select {
+    height: 23px;
+    margin-left: 5px;
+}
+
+.user__list {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: baseline;
+    width: 100%;
+}
+
+.user__item {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
+    flex-grow: 1;
+    width: 100%;
+    border-bottom: 2px solid black;
+}
+
+.user__name {
+    width: 150px;
+}
+
+.user__info {
+    flex-direction: column;
+    width: 260px;
+}
+
+.todo {
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.todo__list {
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.todo__item {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
+    flex-grow: 1;
+    border-bottom: 2px solid black;
+}
+
+.todo__title {
+    width: 300px;
+}
+
+.todo__assignee {
+    flex-direction: row;
+}
+
+.todo__ulabel {
+    margin-right: 5px;
+}

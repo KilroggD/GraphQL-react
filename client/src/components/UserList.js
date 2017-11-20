@@ -4,7 +4,7 @@ import UserItem from './UserItem';
 const UserList = (props) => {
     const users = props.users;
     if (!users.length) { //no users
-        return null;
+        return <p>Search result is currently empty</p>;
     }
     return <div className="user__list">
             {

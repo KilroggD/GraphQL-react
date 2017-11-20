@@ -25,7 +25,7 @@ class UserForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="user__form" onSubmit={this.handleSubmit}>
                 <label>
                     First Name:
                     <input type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
@@ -34,19 +34,27 @@ class UserForm extends React.Component {
                     Last Name:
                     <input type="text" name="last_name" value={this.state.last_name} onChange={this.handleChange} />
                 </label>
-                <select name="department" value={this.state.department || ''} onChange={this.handleChange}>
-                    <option value=''>Select department</option>
-                    <option value="Development">Development</option>
-                    <option value="Support">Support</option>
-                    <option value="Legal">Legal</option>
-                </select>
-                <select name="country" value={this.state.country || ''} onChange={this.handleChange}>
-                    <option value=''>Select country</option>
-                    <option value="Ireland">Ireland</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United States">United States</option>
-                </select>
-                <input type="submit" value="Submit" />
+                <label>
+                Department:
+                    <select name="department" value={this.state.department || ''} onChange={this.handleChange}>
+                        <option value=''>Select department</option>
+                        <option value="Development">Development</option>
+                        <option value="Support">Support</option>
+                        <option value="Legal">Legal</option>
+                    </select>
+                </label>
+                <label>
+                    Country
+                    <select name="country" value={this.state.country || ''} onChange={this.handleChange}>
+                        <option value=''>Select country</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                    </select>
+                </label>
+                <label>
+                    <input type="submit" value="Submit" />
+                </label>
             </form>
         );
     }

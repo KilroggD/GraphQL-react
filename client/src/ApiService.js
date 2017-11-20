@@ -82,7 +82,9 @@ class ApiService {
                     tmp.push(`${key}:${paramStr}`);
                 }
             }
-            paramString = `(${tmp.join()})`;
+            if (tmp.length) {
+                paramString = `(${tmp.join()})`;
+            }
         }
         return paramString;
     }

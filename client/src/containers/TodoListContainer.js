@@ -26,7 +26,7 @@ class TodoListContainer extends React.Component {
         return (
            <div className="todo">
                <TodoList todos={this.state.todos} />
-               <Link to='/'>Back to Users list</Link>
+               <Link className="todo__linkback" to='/'>Back to Users search</Link>
            </div>
         );
     }

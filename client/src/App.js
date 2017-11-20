@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './styles/style.css';
 import UserListContainer from './containers/UserListContainer';
 import TodoListContainer from './containers/TodoListContainer';
 import { Route, Switch } from 'react-router-dom';
