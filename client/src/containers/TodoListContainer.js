@@ -13,7 +13,7 @@ class TodoListContainer extends React.Component {
     }
 
     async componentDidMount() {
-        const userId = this.props.match.params.number;
+        const userId = parseInt(this.props.match.params.userId, 10);
         try {
             const todos = await ApiService.getTodos({userId});
             this.setState({todos});

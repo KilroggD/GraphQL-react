@@ -74,11 +74,13 @@ class ApiService {
         if (params.constructor === Object && Object.keys(params).length) {
             let tmp = [];
             for (let key in params) {
-                let paramStr = params[key].toString();
-                if (typeof params[key] === 'string') {
-                    paramStr = `"${paramStr}"`;
+                let paramStr = params[key];
+                if(paramStr !== '') {
+                    if (typeof params[key] === 'string') {
+                        paramStr = `"${paramStr}"`;
+                    }
+                    tmp.push(`${key}:${paramStr}`);
                 }
-                tmp.push(`${key}:${paramStr}`);
             }
             paramString = `(${tmp.join()})`;
         }

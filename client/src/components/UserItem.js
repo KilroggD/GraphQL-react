@@ -8,7 +8,7 @@ const UserItem = (props) => {
     ({id, first_name, last_name, ...info} = props);
     return (
         <div className='user__item'>
-            <UserName name={first_name} surname={last_name} />
+            <UserName first_name={first_name} last_name={last_name} />
             <UserInfo {...info} />
             <Link className='user__todo-link' to={`/todos/${id}`}>View Todos</Link>
         </div>
