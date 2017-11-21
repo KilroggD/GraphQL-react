@@ -2,6 +2,7 @@ import Users from './data/users';
 import Todos from './data/todos';
 import find from 'lodash/find';
 import filter from 'lodash/filter';
+import sumBy from 'lodash/sumBy';
 import {
 GraphQLInt,
         GraphQLBoolean,
@@ -23,6 +24,18 @@ const UserType = new GraphQLObjectType({
             gender: {type: GraphQLString},
             department: {type: new GraphQLNonNull(GraphQLString)},
             country: {type: new GraphQLNonNull(GraphQLString)},
+            todo_count: {
+                type: GraphQLInt,
+                resolve: (user) => {
+                    return sumBy(Todos, todo => todo.userId === user.id ? 1:0);
+                }
+            },
+            todos: {
+                type: new GraphQLList(TodoType),
+                resolve: (user, args) => {
+                    return filter(Todos, todo => todo.userId === user.id);
+                }
+            }
         })
 });
 

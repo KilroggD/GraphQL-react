@@ -75,6 +75,10 @@
     border-bottom: 2px solid black;
 }
 
+.todo__item--completed {
+    background-color: lightgreen;
+}
+
 .todo__title {
     width: 300px;
 }

@@ -10,7 +10,7 @@ class ApiService {
      */
     constructor() {
         this.apiUrl = 'http://localhost:3001/graphql';
-        this.userFields = `{id, first_name, last_name, email, department, country}`;
+        this.userFields = `{id, first_name, last_name, email, department, country, todo_count}`;
         this.todoFields = `{id title completed user {first_name, last_name}}`;
     }
 
@@ -19,8 +19,8 @@ class ApiService {
      * @param {string} query
      * @returns {unresolved}
      */
-    async getGraphQlData(query) {
-        console.log(query);
+    async getGraphQlData(resource, params, fields) {
+        const query = `{${resource} ${this.paramsToString(params)} ${fields}}`
         const res = await fetch(this.apiUrl, {
             method: 'POST',
             mode: 'cors',
@@ -44,9 +44,7 @@ class ApiService {
      * @returns {array} users list or empty list
      */
     async getUsers(params = {}) {
-        const data = await this.getGraphQlData(
-            `{users ${this.paramsToString(params)} ${this.userFields}}`
-        );
+        const data = await this.getGraphQlData('users', params, this.userFields);
         //return users list
         return data.users;
     }
@@ -57,9 +55,7 @@ class ApiService {
      * @returns {array} users list or empty list
      */
     async getTodos(params = {}) {
-        const data = await this.getGraphQlData(
-            `{todos ${this.paramsToString(params)} ${this.todoFields}}`
-        );
+        const data = await this.getGraphQlData('todos', params, this.todoFields);
         //return todos list
         return data.todos;
     }
